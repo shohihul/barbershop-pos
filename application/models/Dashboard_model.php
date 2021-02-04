@@ -108,7 +108,7 @@ class Dashboard_model extends CI_Model
   {
     $tanggal = (date("Y-m-d H:i:s", time()));
     $query = "SELECT * FROM kunjungan WHERE sudah_antri = 1
-              AND sudah_selesai = 1 AND MONTH(check_out) = 1
+              AND sudah_selesai = 1 AND MONTH(check_out) = MONTH('$tanggal')
               ORDER BY DAY(check_out) ASC";
     $incomes = [];
 
