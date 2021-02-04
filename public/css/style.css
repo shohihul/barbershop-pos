@@ -1,0 +1,17 @@
+.bg-login-img {
+  background: url('../../public/image/barber1.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-register-img {
+  background: url('../../public/image/barber2.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-password-img {
+  background: url('../../public/image/barber3.jpg');
+  background-position: center;
+  background-size: cover;
+}

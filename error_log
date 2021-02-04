@@ -1,0 +1,2 @@
+[31-Oct-2020 11:31:45 Asia/Jakarta] PHP Parse error:  syntax error, unexpected ':' in /home/cahayagr/barbershop.9cahayagroup.com/application/views/template/footer.php on line 92
+[31-Oct-2020 11:32:25 Asia/Jakarta] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /home/cahayagr/barbershop.9cahayagroup.com/application/views/template/footer.php on line 92
