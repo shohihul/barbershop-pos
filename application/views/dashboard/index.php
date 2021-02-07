@@ -384,12 +384,12 @@
           type: 'line',
           data: {
             labels: [
-              "Tanggal 1", "Tanggal 2", "Tanggal 3", "Tanggal 4", "Tanggal 5",
-              "Tanggal 6", "Tanggal 7", "Tanggal 8", "Tanggal 9", "Tanggal 10",
-              "Tanggal 11", "Tanggal 12", "Tanggal 13", "Tanggal 14", "Tanggal 15",
-              "Tanggal 16", "Tanggal 17", "Tanggal 18", "Tanggal 19", "Tanggal 20",
-              "Tanggal 21", "Tanggal 22", "Tanggal 23", "Tanggal 24", "Tanggal 25",
-              "Tanggal 26", "Tanggal 27", "Tanggal 28", "Tanggal 29", "Tanggal 30", "Tanggal 31"
+              "Tgl 1", "Tgl 2", "Tgl 3", "Tgl 4", "Tgl 5",
+              "Tgl 6", "Tgl 7", "Tgl 8", "Tgl 9", "Tgl 10",
+              "Tgl 11", "Tgl 12", "Tgl 13", "Tgl 14", "Tgl 15",
+              "Tgl 16", "Tgl 17", "Tgl 18", "Tgl 19", "Tgl 20",
+              "Tgl 21", "Tgl 22", "Tgl 23", "Tgl 24", "Tgl 25",
+              "Tgl 26", "Tgl 27", "Tgl 28", "Tgl 29", "Tgl 30", "Tgl 31"
             ],
             datasets: [{
               label: "Pendapatan",

@@ -113,11 +113,11 @@ class Dashboard_model extends CI_Model
     $incomes = [];
 
     $r = $this->db->query($query);
-    for ($i=1; $i < 31; $i++) {
+    for ($i=0; $i <= 31; $i++) {
       $incomes[$i] = 0;
       foreach ($r->result_array() as $key => $val) {
 
-        if (explode('-', $val['check_out'])[2] == $i) {
+        if (explode('-', $val['check_out'])[2] == $i+1) {
           $incomes[$i] += $val['tagihan'];
         }
       }
