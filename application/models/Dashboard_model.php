@@ -113,7 +113,7 @@ class Dashboard_model extends CI_Model
     $incomes = [];
 
     $r = $this->db->query($query);
-    for ($i=0; $i < 31; $i++) {
+    for ($i=1; $i < 31; $i++) {
       $incomes[$i] = 0;
       foreach ($r->result_array() as $key => $val) {
 
