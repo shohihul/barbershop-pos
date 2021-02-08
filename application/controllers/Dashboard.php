@@ -24,8 +24,11 @@ class Dashboard extends CI_Controller
       'customerInQueue' => $this->dash->customerInQueue(),
       'monthly_income' => $this->dash->chartThisYear(),
       'daily_income' => $this->dash->chartThisMonth(),
+      'prevMonthly_income' => $this->dash->chartPrevMonth(),
       'chart_jenis' => $this->dash->chartJenis()
     ];
+
+    // print_r($data['prevMonthly_income']);
 
     $this->load->view('template/header', $data);
     $this->load->view('dashboard/index');

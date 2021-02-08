@@ -96,7 +96,7 @@
     <div class="card shadow mb-4">
       <!-- Card Header - Dropdown -->
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Grafik Pendapatan Harian - Bulan <?= date('F') ?></h6>
+        <h6 class="m-0 font-weight-bold text-primary">Grafik Pendapatan Harian</h6>
         <div class="dropdown no-arrow">
           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -113,7 +113,7 @@
       <!-- Card Body -->
       <div class="card-body">
         <div class="chart-area">
-          <canvas id="dailyChart"></canvas>
+          <canvas id="dailyChart" class="chartjs-render-monitor"></canvas>
         </div>
       </div>
     </div>
@@ -283,6 +283,13 @@
           }
           return s.join(dec);
         }  
+
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+
+        var primaryColor = '#4e73df';
+        var secondColor = '#ff3098';
         
         var monthly_income = <?php echo (json_encode($monthly_income)); ?>;
         var chart_jenis = <?php echo (json_encode($chart_jenis)); ?>;
@@ -379,6 +386,9 @@
 
         // Daily Chart
         var daily_income = <?php echo (json_encode($daily_income)); ?>;
+        var prevMonthly_income = <?php echo (json_encode($prevMonthly_income)); ?>;
+        var date = new Date();
+
         var ctx = document.getElementById("dailyChart");
         var myLineChart = new Chart(ctx, {
           type: 'line',
@@ -391,21 +401,40 @@
               "Tgl 21", "Tgl 22", "Tgl 23", "Tgl 24", "Tgl 25",
               "Tgl 26", "Tgl 27", "Tgl 28", "Tgl 29", "Tgl 30", "Tgl 31"
             ],
-            datasets: [{
-              label: "Pendapatan",
-              lineTension: 0.3,
-              backgroundColor: "rgba(78, 115, 223, 0.05)",
-              borderColor: "rgba(78, 115, 223, 1)",
-              pointRadius: 3,
-              pointBackgroundColor: "rgba(78, 115, 223, 1)",
-              pointBorderColor: "rgba(78, 115, 223, 1)",
-              pointHoverRadius: 3,
-              pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-              pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-              pointHitRadius: 10,
-              pointBorderWidth: 2,
-              data: daily_income,
-            }],
+            datasets: [
+              {
+                label: monthNames[date.getMonth()],
+                lineTension: 0.5,
+                backgroundColor: "rgba(78, 115, 223, 0.5)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 2,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: daily_income,
+              },
+
+              {
+                label: monthNames[date.getMonth()-1],
+                lineTension: 0.5,
+                backgroundColor: "rgba(255, 48, 152, 0.1)",
+                borderColor: secondColor,
+                pointRadius: 2,
+                pointBackgroundColor: secondColor,
+                pointBorderColor: secondColor,
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: secondColor,
+                pointHoverBorderColor: secondColor,
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: prevMonthly_income,
+              }
+            ],
+
           },
           options: {
             maintainAspectRatio: false,
@@ -449,7 +478,7 @@
               }],
             },
             legend: {
-              display: false
+              display: true
             },
             tooltips: {
               backgroundColor: "rgb(255,255,255)",
