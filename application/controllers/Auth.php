@@ -59,7 +59,7 @@ class Auth extends CI_Controller
             $this->session->set_userdata($data);
 
             if ($pegawai['role_id'] == 1) {
-              redirect('admin');
+              redirect('dashboard');
             } elseif ($pegawai['role_id'] == 2 || $pegawai['role_id'] == 4) {
               redirect('dashboard');
             } elseif ($pegawai['role_id'] == 3) {
