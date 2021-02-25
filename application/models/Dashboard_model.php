@@ -150,6 +150,30 @@ class Dashboard_model extends CI_Model
     return $incomes;
   }
 
+  public function chartTwoPrevMonth()
+  {
+    $date = date("Y-m-d H:i:s", time());
+    $newDate = date("Y-m-d", strtotime('-2 month', strtotime ($date))) ;
+
+    $query = "SELECT * FROM kunjungan WHERE sudah_antri = 1
+              AND sudah_selesai = 1 AND MONTH(check_out) = MONTH('$newDate')
+              ORDER BY DAY(check_out) ASC";
+    $incomes = [];
+
+    $r = $this->db->query($query);
+    for ($i=0; $i <= 31; $i++) {
+      $incomes[$i] = 0;
+      foreach ($r->result_array() as $key => $val) {
+
+        if (explode('-', $val['check_out'])[2] == $i+1) {
+          $incomes[$i] += $val['tagihan'];
+        }
+      }
+    }
+
+    return $incomes;
+  }
+
 
   public function customerInQueue()
   {

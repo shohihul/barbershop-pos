@@ -284,12 +284,15 @@
           return s.join(dec);
         }  
 
-        var monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
+        var monthNames = ["Januari", "Februari", "Maret", "April", "Mai", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember",
+          "Januari", "Februari", "Maret", "April", "Mai", "Juni",
+          "Juli", "Agustus", "September", "Oktober", "November", "Desember"
         ];
 
         var primaryColor = '#4e73df';
-        var secondColor = '#ff3098';
+        var secondlyColor = '#ff3098';
+        var thirdlyColor = '#fbff00';
         
         var monthly_income = <?php echo (json_encode($monthly_income)); ?>;
         var chart_jenis = <?php echo (json_encode($chart_jenis)); ?>;
@@ -385,8 +388,9 @@
         });
 
         // Daily Chart
-        var daily_income = <?php echo (json_encode($daily_income)); ?>;
+        var thisMonth_income = <?php echo (json_encode($thisMonth_income)); ?>;
         var prevMonthly_income = <?php echo (json_encode($prevMonthly_income)); ?>;
+        var twoPrevMonthly_income = <?php echo (json_encode($twoPrevMonthly_income)); ?>;
         var date = new Date();
 
         var ctx = document.getElementById("dailyChart");
@@ -403,7 +407,7 @@
             ],
             datasets: [
               {
-                label: monthNames[date.getMonth()],
+                label: monthNames[date.getMonth()+12],
                 lineTension: 0.5,
                 backgroundColor: "rgba(78, 115, 223, 0.5)",
                 borderColor: "rgba(78, 115, 223, 1)",
@@ -415,24 +419,40 @@
                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
-                data: daily_income,
+                data: thisMonth_income,
               },
 
               {
-                label: monthNames[date.getMonth()-1],
+                label: monthNames[date.getMonth()+11],
                 lineTension: 0.5,
                 backgroundColor: "rgba(255, 48, 152, 0.1)",
-                borderColor: secondColor,
+                borderColor: secondlyColor,
                 pointRadius: 2,
-                pointBackgroundColor: secondColor,
-                pointBorderColor: secondColor,
+                pointBackgroundColor: secondlyColor,
+                pointBorderColor: secondlyColor,
                 pointHoverRadius: 3,
-                pointHoverBackgroundColor: secondColor,
-                pointHoverBorderColor: secondColor,
+                pointHoverBackgroundColor: secondlyColor,
+                pointHoverBorderColor: secondlyColor,
                 pointHitRadius: 10,
                 pointBorderWidth: 2,
                 data: prevMonthly_income,
-              }
+              },
+
+              {
+                label: monthNames[date.getMonth()+10],
+                lineTension: 0.5,
+                backgroundColor: "rgba(255, 48, 152, 0.1)",
+                borderColor: thirdlyColor,
+                pointRadius: 2,
+                pointBackgroundColor: thirdlyColor,
+                pointBorderColor: thirdlyColor,
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: thirdlyColor,
+                pointHoverBorderColor: thirdlyColor,
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                data: twoPrevMonthly_income,
+              },
             ],
 
           },
