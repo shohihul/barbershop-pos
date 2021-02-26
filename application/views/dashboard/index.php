@@ -153,7 +153,7 @@
       <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Jenis Pelanggan</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Pendapatan Kapster</h6>
           <div class="dropdown no-arrow">
             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -172,6 +172,32 @@
           <div class="chart-pie pt-4 pb-2">
             <canvas id="myPieChart"></canvas>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="col-xl-4 col-lg-5">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Jenis Pelanggan</h6>
+          <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+              <div class="dropdown-header">Dropdown Header:</div>
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-pie pt-4 pb-2">
+            <canvas id="myPieChart"></canvas>
+          </div>
           <div class="mt-4 text-center small">
             <span class="mr-2">
               <i class="fas fa-circle text-primary"></i> Laki-laki
@@ -186,7 +212,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
 <!-- /.container-fluid -->
@@ -295,7 +321,6 @@
         var thirdlyColor = '#fbff00';
         
         var monthly_income = <?php echo (json_encode($monthly_income)); ?>;
-        var chart_jenis = <?php echo (json_encode($chart_jenis)); ?>;
 
         // Monthly Chart
         var ctx = document.getElementById("monthlyChart");
@@ -524,15 +549,51 @@
           }
         });
 
+        // var chart_jenis = <?php echo (json_encode($chart_jenis)); ?>;
+        
+        // var ctx = document.getElementById("myPieChart");
+        // var myPieChart = new Chart(ctx, {
+        //   type: 'doughnut',
+        //   data: {
+        //     labels: ["Laki-laki", "Perempuan", "Anak-anak"],
+        //     datasets: [{
+        //       data: chart_jenis,
+        //       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+        //       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+        //       hoverBorderColor: "rgba(234, 236, 244, 1)",
+        //     }],
+        //   },
+        //   options: {
+        //     maintainAspectRatio: false,
+        //     tooltips: {
+        //       backgroundColor: "rgb(255,255,255)",
+        //       bodyFontColor: "#858796",
+        //       borderColor: '#dddfeb',
+        //       borderWidth: 1,
+        //       xPadding: 15,
+        //       yPadding: 15,
+        //       displayColors: false,
+        //       caretPadding: 10,
+        //     },
+        //     legend: {
+        //       display: false
+        //     },
+        //     cutoutPercentage: 80,
+        //   },
+        // });
+
+        var capsterIncome = <?php echo (json_encode($chart_capster_income)); ?>;
+        var capster_name_list = <?php echo (json_encode($capster_name_list)); ?>;
+        
         var ctx = document.getElementById("myPieChart");
         var myPieChart = new Chart(ctx, {
           type: 'doughnut',
           data: {
-            labels: ["Laki-laki", "Perempuan", "Anak-anak"],
+            labels: capster_name_list,
             datasets: [{
-              data: chart_jenis,
-              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+              data: capsterIncome,
+              backgroundColor: ['#ff007b', '#9500ff', '#009dff', '#00ff88'],
+              hoverBackgroundColor: ['#b30057', '#6800b3', '#006eb3', '#00b35f'],
               hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
           },
@@ -545,11 +606,11 @@
               borderWidth: 1,
               xPadding: 15,
               yPadding: 15,
-              displayColors: false,
+              displayColors: true,
               caretPadding: 10,
             },
             legend: {
-              display: false
+              display: true
             },
             cutoutPercentage: 80,
           },

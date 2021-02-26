@@ -26,10 +26,12 @@ class Dashboard extends CI_Controller
       'thisMonth_income' => $this->dash->chartThisMonth(),
       'prevMonthly_income' => $this->dash->chartPrevMonth(),
       'twoPrevMonthly_income' => $this->dash->chartTwoPrevMonth(),
-      'chart_jenis' => $this->dash->chartJenis()
+      'chart_jenis' => $this->dash->chartJenis(),
+      'chart_capster_income' => $this->dash->chartCapsterIncome(),
+      'capster_name_list' => $this->dash->capster_list(),
     ];
 
-    // print_r($data['twoPrevMonthly_income']);
+    // print_r($data['chart_capster_income']);
 
     $this->load->view('template/header', $data);
     $this->load->view('dashboard/index');

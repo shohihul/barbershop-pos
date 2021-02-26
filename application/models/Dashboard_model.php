@@ -218,4 +218,44 @@ class Dashboard_model extends CI_Model
 
     return $jenisPelanggan;
   }
+
+  public function chartCapsterIncome()
+  {
+    $date = date("Y-m-d H:i:s", time());
+    $month = date("m",$date);
+    
+    $this->db->where('sudah_selesai', 1);
+    $this->db->where('sudah_antri', 1);
+    $this->db->where('MONTH(check_out)', $month);
+    $result = $this->db->get('kunjungan')->result_array();
+
+    $data = [];
+    foreach ($result as $row) {
+      array_push($data, $row['nama_barber']);
+    }
+
+    $data_count = array_count_values($data);
+
+    return array_values($data_count);
+  }
+
+  public function capster_list()
+  {
+    $this->db->where('sudah_selesai', 1);
+    $this->db->where('sudah_antri', 1);
+    $result = $this->db->get('kunjungan')->result_array();
+
+    $data = [];
+    foreach ($result as $row) {
+      array_push($data, $row['nama_barber']);
+    }
+
+    $capster = array_unique($data);
+    $capster_list = [];
+    foreach ($capster as $row) {
+      array_push($capster_list, $row);
+    }
+
+    return $capster_list;
+  }
 }
