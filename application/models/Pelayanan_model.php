@@ -166,9 +166,9 @@ class Pelayanan_model extends CI_Model
     $this->form_validation->set_rules('jpel', 'Jenis Pelanggan', 'required', [
       'required' => 'Jenis Pelanggan tidak boleh kosong!'
     ]);
-    $this->form_validation->set_rules('nohp', 'Nomor HP', 'numeric|min_length[11]|max_length[12]', [
+    $this->form_validation->set_rules('nohp', 'Nomor HP', 'numeric|min_length[11]|max_length[13]', [
       'required' => 'Nomor HP tidak boleh kosong!',
-      'max_length' =>'Format Nomor HP 0812xxxxxxxx'
+      'max_length' => 'Digit Terlalu Banyak'
     ]);
   }
 
